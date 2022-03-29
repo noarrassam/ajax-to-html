@@ -14,6 +14,6 @@ It's an application that gets a JSON api through an Ajax response object to get 
 
 - Ajax
 
-## **Tasks**
+## **Movies**
 
-![![Tasks]()](https://github.com/noarrassam/ajax-to-html/blob/main/Images/1.png)
+![![Movies]()](https://github.com/noarrassam/ajax-to-html/blob/main/Images/1.png)
