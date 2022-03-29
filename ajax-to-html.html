@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Favorite Movies</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Basic Table</h2>
+      <p>
+        The .table class adds basic styling (light padding and only horizontal
+        dividers) to a table:
+      </p>
+      <table class="table" id="movie-table">
+        <thead>
+          <tr>
+            <!-- The scope attribute specifies that this is a header for a column -->
+            <th scope="col">Movie Name</th>
+            <th scope="col">Year</th>
+            <th scope="col">Actors</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Interstellar</td>
+            <td>2014</td>
+            <td>
+              Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
+            </td>
+          </tr>
+          <!-- Insert additional movie rows here -->
+          <tr id="secondRow"></tr>
+          <tr id="thirdRow"></tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // The below code fills in the first row of the table
+      var movie = "Mr. Nobody";
+      var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+        // Create and save a reference to new empty table row
+        let movieTable = document.getElementById("secondRow");
+        console.log(movieTable);
+        // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+        // Append the td elements to the new table row
+        // Append the table row to the tbody element
+        newel = document.createElement("td");
+        var elementid = document.getElementsByTagName("td").length;
+        newel.setAttribute("id", elementid);
+        newel.innerHTML = response.Title;
+        movieTable.appendChild(newel);
+
+        newel1 = document.createElement("td");
+        var elementid1 = document.getElementsByTagName("td").length;
+        newel1.setAttribute("id", elementid1);
+        newel1.innerHTML = response.Year;
+        movieTable.appendChild(newel1);
+
+        newel2 = document.createElement("td");
+        var elementid2 = document.getElementsByTagName("td").length;
+        newel2.setAttribute("id", elementid2);
+        newel2.innerHTML = response.Actors;
+        movieTable.appendChild(newel2);
+      });
+
+      // Repeat the above logic to add rows for two more movies of your choice
+
+      // BONUS: Once complete, try to make your code as DRY as possible through the use of functions
+    </script>
+  </body>
+</html>
