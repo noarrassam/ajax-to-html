@@ -36,6 +36,7 @@
           <!-- Insert additional movie rows here -->
           <tr id="secondRow"></tr>
           <tr id="thirdRow"></tr>
+          <tr id="fourthRow"></tr>
         </tbody>
       </table>
     </div>
@@ -75,6 +76,8 @@
         movieTable.appendChild(newel2);
       });
 
+      // Repeat the above logic to add rows for two more movies of your choice
+
       var movie1 = "Pulp Fiction";
       var queryURL1 =
         "https://www.omdbapi.com/?t=" + movie1 + "&apikey=trilogy";
@@ -107,9 +110,40 @@
         movieTable.appendChild(newel2);
       });
 
-      // Repeat the above logic to add rows for two more movies of your choice
+      var movie2 = "Taxidermia";
+      var queryURL2 =
+        "https://www.omdbapi.com/?t=" + movie2 + "&apikey=trilogy";
+
+      $.ajax({
+        url: queryURL2,
+        method: "GET",
+      }).then(function (response) {
+        let movieTable = document.getElementById("fourthRow");
+        console.log(movieTable);
+        // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+        // Append the td elements to the new table row
+        // Append the table row to the tbody element
+        newel = document.createElement("td");
+        var elementid = document.getElementsByTagName("td").length;
+        newel.setAttribute("id", elementid);
+        newel.innerHTML = response.Title;
+        movieTable.appendChild(newel);
+
+        newel1 = document.createElement("td");
+        var elementid1 = document.getElementsByTagName("td").length;
+        newel1.setAttribute("id", elementid1);
+        newel1.innerHTML = response.Year;
+        movieTable.appendChild(newel1);
+
+        newel2 = document.createElement("td");
+        var elementid2 = document.getElementsByTagName("td").length;
+        newel2.setAttribute("id", elementid2);
+        newel2.innerHTML = response.Actors;
+        movieTable.appendChild(newel2);
+      });
 
       // BONUS: Once complete, try to make your code as DRY as possible through the use of functions
+      
     </script>
   </body>
 </html>
